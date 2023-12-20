@@ -1,3 +1,8 @@
 ﻿  axbopenglwidget.cpp
+  QtWidgetsApplication1.cpp
+  main.cpp
 e:\openglproject\qtwidgetsapplication1\qtwidgetsapplication1\axbopenglwidget.cpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  qrc_QtWidgetsApplication1.cpp
+  moc_QtWidgetsApplication1.cpp
+  moc_axbopenglwidget.cpp
   QtWidgetsApplication1.vcxproj -> E:\OpenGLProject\QtWidgetsApplication1\x64\Release\QtWidgetsApplication1.exe
