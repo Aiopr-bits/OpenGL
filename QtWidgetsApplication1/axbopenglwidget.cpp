@@ -3,11 +3,12 @@
 unsigned int VBO, VAO, EBO;
 float vertices[] = {
 	// positions      // colors        // texture coords
-	0.5f, 0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, // top right
-	0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f, // bottom right
-	-0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, // bottom left
-	-0.5f, 0.5f, 0.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f // top left
+	0.9f, 0.9f, 0.0f, 1.0f, 0.0f, 0.0f, 2.0f, 2.0f, // top right
+	0.9f, -0.9f, 0.0f, 0.0f, 1.0f, 0.0f, 2.0f, -1.0f, // bottom right
+	-0.9f, -0.9f, 0.0f, 0.0f, 0.0f, 1.0f, -1.0f, -1.0f, // bottom left
+	-0.9f, 0.9f, 0.0f, 1.0f, 1.0f, 0.0f, -1.0f, 2.0f // top left
 };
+
 
 unsigned int indices[] = { // note that we start from 0!
 0, 1, 3, // first triangle
@@ -54,15 +55,18 @@ void AXBOpenGLWidget::initializeGL()
 	bool success;
 	shaderProgram.addShaderFromSourceFile(QOpenGLShader::Vertex, "./shaders/shapes.vert");
 	shaderProgram.addShaderFromSourceFile(QOpenGLShader::Fragment, "./shaders/shapes.frag");
+
 	success = shaderProgram.link();
 	if (!success)
 		qDebug() << "ERR:" << shaderProgram.log();
 	textureWall = new QOpenGLTexture(QImage("./images/wall.jpg").mirrored());
 	textureSmile = new QOpenGLTexture(QImage("./images/awesomeface.png").mirrored());
+	textureSmall = new QOpenGLTexture(QImage("./images/small.png").mirrored());
 
 	shaderProgram.bind();
 	shaderProgram.setUniformValue("textureWall", 0);
 	shaderProgram.setUniformValue("textureSmile", 1);
+	shaderProgram.setUniformValue("textureSmall", 2);
 
 	//创建VBO和VAO对象，并赋予ID
 	glGenVertexArrays(1, &VAO);
@@ -109,6 +113,9 @@ void AXBOpenGLWidget::paintGL()
     case Rect:
 		textureWall->bind(0);
 		textureSmile->bind(1);
+		textureSmall->bind(2);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_MIRRORED_REPEAT);
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, NULL);
         break;
     default:

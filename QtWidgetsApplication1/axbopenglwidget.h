@@ -29,6 +29,7 @@ private:
 	QOpenGLShaderProgram shaderProgram;
 	QOpenGLTexture* textureWall;
 	QOpenGLTexture* textureSmile;
+	QOpenGLTexture* textureSmall;
 };
 
 #endif // AXBOPENGLWIDGET_H
