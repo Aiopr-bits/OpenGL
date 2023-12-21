@@ -6,6 +6,8 @@
 #include <QOpenGLFunctions_3_3_Core>
 #include <QOpenGLShaderProgram>
 #include <QOpenGLTexture>
+#include <QTimer>
+#include <QTime>
 
 class AXBOpenGLWidget : public QOpenGLWidget, QOpenGLFunctions_3_3_Core
 {
@@ -24,12 +26,15 @@ protected:
 signals:
 
 public slots:
+	void on_timeout();
+
 private:
 	Shape m_shape;
 	QOpenGLShaderProgram shaderProgram;
 	QOpenGLTexture* textureWall;
 	QOpenGLTexture* textureSmile;
 	QOpenGLTexture* textureSmall;
+	QTimer timer;
 };
 
 #endif // AXBOPENGLWIDGET_H

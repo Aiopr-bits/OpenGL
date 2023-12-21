@@ -3,10 +3,10 @@
 unsigned int VBO, VAO, EBO;
 float vertices[] = {
 	// positions      // colors        // texture coords
-	0.9f, 0.9f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, // top right
-	0.9f, -0.9f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f, // bottom right
-	-0.9f, -0.9f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, // bottom left
-	-0.9f, 0.9f, 0.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f // top left
+	0.3f, 0.3f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, // top right
+	0.3f, -0.3f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f, // bottom right
+	-0.3f, -0.3f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, // bottom left
+	-0.3f, 0.3f, 0.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f // top left
 };
 
 
@@ -17,7 +17,9 @@ unsigned int indices[] = { // note that we start from 0!
 
 AXBOpenGLWidget::AXBOpenGLWidget(QWidget *parent) : QOpenGLWidget(parent)
 {
-
+	setFocusPolicy(Qt::StrongFocus);
+	QObject::connect(&timer, SIGNAL(timeout()), this, SLOT(on_timeout()));
+	timer.start(10);
 }
 
 AXBOpenGLWidget::~AXBOpenGLWidget()
@@ -59,6 +61,9 @@ void AXBOpenGLWidget::initializeGL()
 	success = shaderProgram.link();
 	if (!success)
 		qDebug() << "ERR:" << shaderProgram.log();
+
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	textureWall = new QOpenGLTexture(QImage("./images/wall.jpg").mirrored());
 	textureSmile = new QOpenGLTexture(QImage("./images/awesomeface.png").mirrored());
 	textureSmall = new QOpenGLTexture(QImage("./images/small.png").mirrored());
@@ -95,13 +100,15 @@ void AXBOpenGLWidget::initializeGL()
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
 	//增加纹理环绕方式
-	textureWall->bind(2);
+	textureSmall->bind(2);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_MIRRORED_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	//增加纹理过滤方式
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
 
+	
 	glBindVertexArray(0);
 }
 
@@ -112,6 +119,9 @@ void AXBOpenGLWidget::resizeGL(int w, int h)
 
 void AXBOpenGLWidget::paintGL()
 {
+	QMatrix4x4 theMatrix;
+	unsigned int time = QTime::currentTime().msec();
+
 	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
 
@@ -124,9 +134,23 @@ void AXBOpenGLWidget::paintGL()
 		textureSmile->bind(1);
 		textureSmall->bind(2);
 
+		theMatrix.translate(0.5, -0.5, 0);
+		theMatrix.rotate(time, QVector3D(0.0f, 0.0f, 1.0f));
+		shaderProgram.setUniformValue("theMatrix", theMatrix);
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, NULL);
+
+		theMatrix.setToIdentity();
+		theMatrix.translate(-0.5, 0.5, 0);
+		theMatrix.scale(fabs(sin(time)));
+		shaderProgram.setUniformValue("theMatrix", theMatrix);
+		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, NULL);
         break;
     default:
         break;
     }
+}
+
+void AXBOpenGLWidget::on_timeout()
+{
+	update();
 }

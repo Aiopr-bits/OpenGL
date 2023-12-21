@@ -1,15 +1,19 @@
-e:\openglproject\qtwidgetsapplication1\qtwidgetsapplication1\x64\release\qrc_qtwidgetsapplication1.obj
 e:\openglproject\qtwidgetsapplication1\qtwidgetsapplication1\x64\release\moc_qtwidgetsapplication1.obj
 e:\openglproject\qtwidgetsapplication1\qtwidgetsapplication1\x64\release\moc_axbopenglwidget.obj
+e:\openglproject\qtwidgetsapplication1\qtwidgetsapplication1\x64\release\qrc_qtwidgetsapplication1.obj
 e:\openglproject\qtwidgetsapplication1\qtwidgetsapplication1\x64\release\main.obj
-e:\openglproject\qtwidgetsapplication1\qtwidgetsapplication1\x64\release\axbopenglwidget.obj
 e:\openglproject\qtwidgetsapplication1\qtwidgetsapplication1\x64\release\qtwidgetsapplication1.obj
 e:\openglproject\qtwidgetsapplication1\x64\release\qtwidgetsapplication1.exe
 e:\openglproject\qtwidgetsapplication1\qtwidgetsapplication1\x64\release\moc\moc_axbopenglwidget.cpp
 e:\openglproject\qtwidgetsapplication1\qtwidgetsapplication1\x64\release\uic\ui_qtwidgetsapplication1.h
 e:\openglproject\qtwidgetsapplication1\qtwidgetsapplication1\x64\release\rcc\qrc_qtwidgetsapplication1.cpp
 e:\openglproject\qtwidgetsapplication1\qtwidgetsapplication1\x64\release\moc\moc_qtwidgetsapplication1.cpp
+e:\openglproject\qtwidgetsapplication2\qtwidgetsapplication1\x64\release\rcc\qrc_qtwidgetsapplication1.cpp
+e:\openglproject\qtwidgetsapplication2\qtwidgetsapplication1\x64\release\moc\moc_qtwidgetsapplication1.cpp
+e:\openglproject\qtwidgetsapplication2\qtwidgetsapplication1\x64\release\moc\moc_axbopenglwidget.cpp
+e:\openglproject\qtwidgetsapplication2\qtwidgetsapplication1\x64\release\uic\ui_qtwidgetsapplication1.h
 e:\openglproject\qtwidgetsapplication1\qtwidgetsapplication1\x64\release\qtwidgetsapplication1.res
+e:\openglproject\qtwidgetsapplication1\qtwidgetsapplication1\x64\release\axbopenglwidget.obj
 e:\openglproject\qtwidgetsapplication1\qtwidgetsapplication1\x64\release\qtwidget.11d7d5dd.tlog\cl.command.1.tlog
 e:\openglproject\qtwidgetsapplication1\qtwidgetsapplication1\x64\release\qtwidget.11d7d5dd.tlog\cl.read.1.tlog
 e:\openglproject\qtwidgetsapplication1\qtwidgetsapplication1\x64\release\qtwidget.11d7d5dd.tlog\cl.write.1.tlog
@@ -24,5 +28,3 @@ e:\openglproject\qtwidgetsapplication1\qtwidgetsapplication1\x64\release\qtwidge
 e:\openglproject\qtwidgetsapplication1\qtwidgetsapplication1\x64\release\qtwidget.11d7d5dd.tlog\rc.write.1.tlog
 e:\openglproject\qtwidgetsapplication1\qtwidgetsapplication1\x64\release\qtwidget.11d7d5dd.tlog\rcc.read.1u.tlog
 e:\openglproject\qtwidgetsapplication1\qtwidgetsapplication1\x64\release\qtwidget.11d7d5dd.tlog\rcc.write.1u.tlog
-e:\openglproject\qtwidgetsapplication1\qtwidgetsapplication1\x64\release\qtwidget.11d7d5dd.tlog\uic.read.1u.tlog
-e:\openglproject\qtwidgetsapplication1\qtwidgetsapplication1\x64\release\qtwidget.11d7d5dd.tlog\uic.write.1u.tlog

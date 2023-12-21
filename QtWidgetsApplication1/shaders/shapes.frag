@@ -6,6 +6,5 @@ uniform sampler2D textureWall;
 uniform sampler2D textureSmile;
 uniform sampler2D textureSmall;
 void main(){
-    FragColor = texture(textureSmall, TexCord);
-           
+    FragColor = texture(textureSmile, TexCord);
 }
